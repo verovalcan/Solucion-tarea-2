@@ -1,0 +1,83 @@
+---
+title: "Solucion tarea 2"
+author: "Veronica Valverde"
+date: "10/13/2020"
+output: html_document
+---
+
+Establecer el directorio de trabajo
+
+```{r}
+setwd("C:/Users/verov/Documents/UCR/2020/IICiclo/Investigacion_Reproducible/curso_reproducible-master")	
+wd <- getwd()	
+setwd(wd)
+```
+
+1. Clonar el repositorio de GitHub
+2. Crear el Rmd
+3. Cargar la funcion
+
+```{r}
+source("./scripts/replicar_reg_scal.R")
+```
+
+4.Calcule la proporción de falsos positivos (el valor que devuelve replicar_reg_scal()) para números de variables (argumento nvars) de 10, 20, 50 y 100.
+
+```{r}
+preg4<-c(replicar_reg_scal(nvars = 10), replicar_reg_scal(nvars = 20),replicar_reg_scal(nvars = 50),replicar_reg_scal(nvars = 100))
+
+preg4
+
+```
+
+5. Grafique el número de variables vs. la proporción de falsos positivos. Utilice los argumentos para opciones dentro del “chunk” para centrar el gráfico.
+
+```{r fig.align="center"}
+xx<-c(10,20,50,100)
+
+p1<-plot(xx,preg4,xlab="nvars",ylab="Falsos Positivos" )
+
+```
+
+
+6. Repita 4 y 5 pero esta vez variando el valor de alfa (siempre usando números menores o iguales a 0.05). 
+
+4.Calcule la proporción de falsos positivos (el valor que devuelve replicar_reg_scal()) para números de variables (argumento nvars) de 10, 20, 50 y 100.
+
+```{r}
+preg6<-c(replicar_reg_scal(alfa = 0.05), replicar_reg_scal(alfa = 0.0375),replicar_reg_scal(alfa = 0.025),replicar_reg_scal(alfa=0.0125))
+
+preg6
+
+```
+
+```{r fig.align="center"}
+varalfa<-c(0.05,0.0375,0.025,0.0125)
+
+p2<-plot(varalfa,preg6,xlab="alfa",ylab="Falsos Positivos" )
+
+```
+
+7. Añada la información de la sesión en un “chunk” al final del Rmarkdown de forma que muestre la información pero no el código
+
+```{r echo= FALSE}
+sessionInfo
+```
+
+
+8.Suba su repositorio local a un repositorio público en su cuenta personal de github
+
+
+9.Publique el html resultante en su cuenta de Rpubs (debe crear una cuenta antes de subirlo)
+
+
+10.Ponga una foto de su organismo favorito (no-humano) (no se relaciona al resto, pero ni modo)
+
+![Figura 1.Neonato de tortuga negra](./neonatonegra.jpg)
+
+
+
+
+
+
+
